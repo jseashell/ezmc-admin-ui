@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ezmc-configurator": {
+    "ezmc-admin-ui": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,18 +13,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ezmc-configurator",
+            "outputPath": "dist/ezmc-admin-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -64,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ezmc-configurator:build:production"
+              "browserTarget": "ezmc-admin-ui:build:production"
             },
             "development": {
-              "browserTarget": "ezmc-configurator:build:development"
+              "browserTarget": "ezmc-admin-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +70,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ezmc-configurator:build"
+            "browserTarget": "ezmc-admin-ui:build"
           }
         },
         "test": {
@@ -85,13 +80,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         }
