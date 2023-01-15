@@ -1,0 +1,72 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.main {
+  width: 40rem;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 100;
+}
+
+section {
+  width: 100%;
+}
+
+section ul,
+section ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+section.actions ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+section.actions .buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 13rem;
+}
+
+.buttons button {
+  font-family: "Monocraft";
+  height: 3rem;
+  width: 6rem;
+  font-weight: 300;
+}
+
+section.history .terminal {
+  height: 15em;
+  overflow-y: scroll;
+  background-color: black;
+  color: lightgrey;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+}
+
+section.history ol {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.buttons button:hover {
+  cursor: pointer;
+  font-weight: 400;
+}
+
+p {
+  margin: 0;
+}
