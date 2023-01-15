@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -8,45 +8,36 @@ import { environment } from 'src/environments/environment';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnDestroy {
     private subs: Subscription[] = [];
+    history: { timestamp: Date; message: string }[] = [];
 
     constructor(private http: HttpClient) {}
 
-    history: { timestamp: Date; message: string }[] = [];
-
-    ngOnInit(): void {}
-
     onStart(): void {
-        this.history.unshift({
-            timestamp: new Date(),
-            message: 'Starting game server...',
-        });
+        this.addToHistory('Starting game server...');
         this.subs.push(
-            this.http.get(environment.adminService.start).subscribe((res: any) => {
-                this.history.unshift({
-                    timestamp: new Date(),
-                    message: res.message,
-                });
-                console.log('Started game server.', res);
+            this.http.get(`${environment.adminService.url}/start`).subscribe((res: any) => {
+                this.addToHistory(res.message);
             }),
         );
     }
 
     onStop(): void {
-        this.history.unshift({
-            timestamp: new Date(),
-            message: 'Stopping game server...',
-        });
+        this.addToHistory('Stopping game server...');
         this.subs.push(
-            this.http.get(environment.adminService.stop).subscribe((res: any) => {
-                this.history.unshift({
-                    timestamp: new Date(),
-                    message: res.message,
-                });
-                console.log('Stopped game server.', res);
+            this.http.get(`${environment.adminService.url}/stop`).subscribe((res: any) => {
+                this.addToHistory(res.message);
             }),
         );
+    }
+
+    private addToHistory(message: string): void {
+        this.history.unshift({
+            timestamp: new Date(),
+            message: message,
+        });
+        console.log('Stopped game server.', message);
     }
 
     ngOnDestroy(): void {
