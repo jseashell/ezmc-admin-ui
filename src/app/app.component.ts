@@ -15,29 +15,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     constructor(private cdr: ChangeDetectorRef, private http: HttpClient) {}
 
-    ngOnInit(): void {
-        // x number of milliseconds
-        this.subs.push(
-            interval(5000)
-                .pipe(
-                    // make first request right away; otherwise we have to wait x seconds before first one
-                    startWith(),
-
-                    // cancel previous request if it had not finished yet
-                    switchMap(() => {
-                        // catch the error inside to allow for a retry each time
-                        // you could also use `.catch` on the entire observable stream which will
-                        // cancel it if there's an error.
-                        return this.http.get(`${environment.adminService.url}/status`);
-                    }),
-                )
-                .subscribe((data: any) => {
-                    this.isRunning = data.isRunning;
-                    this.cdr.markForCheck();
-                }),
-        );
-    }
-
     onStart(): void {
         this.addToHistory('Starting game server...');
         this.subs.push(
