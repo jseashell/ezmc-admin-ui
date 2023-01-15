@@ -19,6 +19,14 @@
     font-weight: 100;
 }
 
+h1,
+h2,
+h3,
+h4,
+p {
+    color: #ddd;
+}
+
 .main section {
     width: 100%;
 }
@@ -109,4 +117,5 @@
 
 .main p {
     margin: 0;
+    color: #ddd;
 }
