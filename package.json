@@ -1,5 +1,5 @@
 {
-    "name": "ezmc-admin-ui",
+    "name": "ezmc-management-console",
     "version": "1.0.0",
     "scripts": {
         "ng": "ng",
