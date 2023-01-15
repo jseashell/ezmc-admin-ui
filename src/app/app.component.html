@@ -1,31 +1,32 @@
 <div class="main">
-  <h1>EZMC Admin UI</h1>
-  <section class="actions">
-    <ul>
-      <li>
-        <h3>Start/Stop the game server</h3>
-      </li>
-      <li class="buttons">
-        <button (click)="onStart()">Start</button>
-        <button (click)="onStop()">Stop</button>
-      </li>
-    </ul>
-  </section>
-  <section class="history">
-    <ul>
-      <li>
-        <h3>History</h3>
-      </li>
-      <li class="terminal">
-        <ol reversed>
-          <li *ngFor="let action of history">
-            <p>
-              {{ action.timestamp | date : "mediumTime" }} ~
-              {{ action.message }}
-            </p>
-          </li>
-        </ol>
-      </li>
-    </ul>
-  </section>
+    <img src="/assets/Minecraft-Logo.png" />
+    <h1>EZMC Admin UI</h1>
+    <section class="actions">
+        <ul>
+            <li>
+                <h3>Start/Stop the game server</h3>
+            </li>
+            <li class="buttons">
+                <button (click)="onStart()">Start</button>
+                <button (click)="onStop()">Stop</button>
+            </li>
+        </ul>
+    </section>
+    <section class="history">
+        <ul>
+            <li>
+                <h3>History</h3>
+            </li>
+            <li class="terminal">
+                <ol reversed>
+                    <li *ngFor="let action of history">
+                        <p>
+                            {{ action.timestamp | date : 'mediumTime' }} ~
+                            {{ action.message }}
+                        </p>
+                    </li>
+                </ol>
+            </li>
+        </ul>
+    </section>
 </div>
