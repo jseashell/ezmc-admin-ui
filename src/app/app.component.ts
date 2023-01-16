@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { interval, startWith, Subscription, switchMap } from 'rxjs';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,12 +8,12 @@ import { environment } from 'src/environments/environment';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnDestroy {
     private subs: Subscription[] = [];
     history: { timestamp: Date; message: string }[] = [];
     isRunning = false;
 
-    constructor(private cdr: ChangeDetectorRef, private http: HttpClient) {}
+    constructor(private http: HttpClient) {}
 
     onStart(): void {
         this.addToHistory('Starting game server...');
