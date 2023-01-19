@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,29 +8,45 @@ import { environment } from 'src/environments/environment';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnDestroy {
-    private subs: Subscription[] = [];
+export class AppComponent {
     history: { timestamp: Date; message: string }[] = [];
-    isRunning = false;
+    publicIpAddress$: ReplaySubject<String> = new ReplaySubject(1);
 
     constructor(private http: HttpClient) {}
 
     onStart(): void {
         this.addToHistory('Starting game server...');
-        this.subs.push(
-            this.http.get(`${environment.adminService.url}/start`).subscribe((res: any) => {
-                this.addToHistory(res.message);
-            }),
-        );
+        this.http.get<string>(`${environment.adminService.url}/start`).subscribe((_res: string) => {
+            const getStatus = setTimeout(() => {
+                this.http.get<string>(`${environment.adminService.url}/status`).subscribe((res: string) => {
+                    if (res === 'RUNNING') {
+                        clearTimeout(getStatus);
+                        this.addToHistory('Started successfully!');
+                        this.http.get<string>(`${environment.adminService.url}/publicIpAddress`).subscribe((res) => {
+                            this.addToHistory(`IP Address: ${res}`);
+                        });
+                    } else {
+                        this.addToHistory('Checking status...');
+                    }
+                });
+            }, 1000);
+        });
     }
 
     onStop(): void {
         this.addToHistory('Stopping game server...');
-        this.subs.push(
-            this.http.get(`${environment.adminService.url}/stop`).subscribe((res: any) => {
-                this.addToHistory(res.message);
-            }),
-        );
+        this.http.get<string>(`${environment.adminService.url}/stop`).subscribe((_res: string) => {
+            const getStatus = setTimeout(() => {
+                this.http.get<string>(`${environment.adminService.url}/status`).subscribe((res: string) => {
+                    if (res === 'RUNNING') {
+                        clearTimeout(getStatus);
+                        this.addToHistory('Stopped successfully!');
+                    } else {
+                        this.addToHistory('Checking status...');
+                    }
+                });
+            }, 1000);
+        });
     }
 
     private addToHistory(message: string): void {
@@ -39,9 +55,5 @@ export class AppComponent implements OnDestroy {
             message: message,
         });
         console.log('Stopped game server.', message);
-    }
-
-    ngOnDestroy(): void {
-        this.subs.forEach((sub) => sub?.unsubscribe());
     }
 }
