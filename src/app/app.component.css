@@ -45,11 +45,16 @@ p {
     justify-content: space-between;
 }
 
+@media only screen and (max-width: 490px) {
+    .main section.actions ul {
+        flex-direction: column;
+    }
+}
+
 .main section.actions .buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 18rem;
 }
 
 .main section.actions .buttons button {
