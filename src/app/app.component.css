@@ -12,8 +12,7 @@
 
 @media only screen and (max-width: 490px) {
     .main {
-        width: 100%;
-        margin: 0 10px;
+        width: 90%;
     }
 }
 
