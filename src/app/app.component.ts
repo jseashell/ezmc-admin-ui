@@ -24,7 +24,11 @@ export class AppComponent implements OnInit {
         this.subs.push(
             timer(0, 3000)
                 .pipe(
-                    switchMap(() => this.http.get(`${environment.adminService.url}/status`)),
+                    switchMap(() =>
+                        this.http.get(
+                            `${environment.adminService.url}/status?cluster=${environment.adminService.cluster}`,
+                        ),
+                    ),
                     tap((res: any) => {
                         const prevStatus = this.status;
                         this.status = res.status as Status;
@@ -37,7 +41,9 @@ export class AppComponent implements OnInit {
                             this.runningCount = 1;
                             this.subs.push(
                                 this.http
-                                    .get<string>(`${environment.adminService.url}/publicIpAddress`)
+                                    .get<string>(
+                                        `${environment.adminService.url}/publicIpAddress?cluster=${environment.adminService.cluster}`,
+                                    )
                                     .subscribe((res: any) => {
                                         this.addToHistory(`IP Address: ${res.publicIpAddress}`);
                                     }),
@@ -65,7 +71,7 @@ export class AppComponent implements OnInit {
     onStart(): void {
         this.subs.push(
             this.http
-                .get<string>(`${environment.adminService.url}/start`)
+                .get<string>(`${environment.adminService.url}/start?cluster=${environment.adminService.cluster}`)
                 .pipe(
                     tap(() => this.addToHistory('Starting game server...')),
                     catchError((err, caught) => {
@@ -81,7 +87,7 @@ export class AppComponent implements OnInit {
     onStop(): void {
         this.subs.push(
             this.http
-                .get<string>(`${environment.adminService.url}/stop`)
+                .get<string>(`${environment.adminService.url}/stop?cluster=${environment.adminService.cluster}`)
                 .pipe(
                     tap(() => this.addToHistory('Stopping game server...')),
                     catchError((err, caught) => {
