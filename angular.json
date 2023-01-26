@@ -42,7 +42,12 @@
                                     "with": "src/environments/environment.main.ts"
                                 }
                             ],
-                            "outputHashing": "all"
+                            "outputHashing": "all",
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "sourceMap": true,
+                            "namedChunks": true
                         },
                         "development": {
                             "buildOptimizer": false,
