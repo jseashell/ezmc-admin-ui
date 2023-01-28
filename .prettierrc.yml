@@ -11,3 +11,7 @@ bracketSpacing: true
 arrowParens: always
 htmlWhitespaceSensitivity: strict
 endOfLine: auto
+overrides:
+  - files: '*.yml'
+    options:
+      tabWidth: 2
