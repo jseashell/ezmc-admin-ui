@@ -1,32 +1,23 @@
 <div class="main">
-    <img src="/assets/Minecraft-Logo.png" />
-    <h1>Management Console</h1>
-    <section class="actions">
-        <ul>
-            <li>
-                <h2>Game server</h2>
-            </li>
-            <li class="buttons">
-                <button (click)="onStart()"><h3 class="title">Start</h3></button>
-                <button (click)="onStop()"><h3 class="title">Stop</h3></button>
-            </li>
-        </ul>
+  <img src="/assets/Minecraft-Logo.png" />
+  <h1>Management Console</h1>
+  <section class="flex-column margin-top-sm">
+    <section class="flex-row">
+      <app-button (click)="onTabChange('create')" [active]="showCreate">Create</app-button>
+      <app-button (click)="onTabChange('manage')" [active]="showManage">Manage</app-button>
+      <app-button (click)="onTabChange('settings')" [active]="showSettings">Settings</app-button>
     </section>
-    <section class="history">
-        <ul>
-            <li>
-                <h2>History</h2>
-            </li>
-            <li class="terminal">
-                <ol reversed>
-                    <li *ngFor="let action of history">
-                        <p>
-                            {{ action.timestamp | date : 'mediumTime' }} ~
-                            {{ action.message }}
-                        </p>
-                    </li>
-                </ol>
-            </li>
-        </ul>
+    <section class="padding-sm">
+      <h2>{{ tabTitle }}</h2>
+      <section class="padding-left-sm">
+        <app-create *ngIf="showCreate"></app-create>
+        <app-manage *ngIf="showManage"></app-manage>
+        <app-settings *ngIf="showSettings"></app-settings>
+      </section>
     </section>
+  </section>
+  <section>
+    <h2 class="padding-left-sm margin-top-sm margin-bottom-sm">History</h2>
+    <app-history></app-history>
+  </section>
 </div>

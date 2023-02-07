@@ -1,0 +1,8 @@
+<ol reversed *ngIf="history$ | async as history" class="padding-sm">
+  <li *ngFor="let action of history">
+    <p>
+      {{ action.timestamp | date : 'mediumTime' }} ~
+      {{ action.message }}
+    </p>
+  </li>
+</ol>

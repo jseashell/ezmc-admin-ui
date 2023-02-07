@@ -1,0 +1,21 @@
+:host {
+  width: 100%;
+}
+
+ol {
+  height: 15em;
+  overflow-y: scroll;
+  background-color: black;
+  color: lightgrey;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+@media only screen and (max-width: 490px) {
+  ol {
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+  }
+}
