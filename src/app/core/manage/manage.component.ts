@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { HistoryService } from '@services';
-import { catchError, EMPTY, Subscription, tap } from 'rxjs';
+import { GameService, HistoryService } from '@services';
+import { Subscription, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,36 +11,22 @@ import { environment } from 'src/environments/environment';
 export class ManageComponent {
   private subs: Subscription[] = [];
 
-  constructor(private http: HttpClient, private historyService: HistoryService) {}
+  constructor(private gameService: GameService, private historyService: HistoryService) {}
 
   onStart(): void {
     this.subs.push(
-      this.http
-        .get<string>(`${environment.adminService.url}/start?clusterName=${environment.adminService.clusterName}`)
-        .pipe(
-          tap(() => this.historyService.add('Starting game server...')),
-          catchError((err, caught) => {
-            console.error(err);
-            this.historyService.add('Request to start game server failed.');
-            return EMPTY;
-          }),
-        )
+      this.gameService
+        .start(environment.adminService.clusterName)
+        .pipe(tap(() => this.historyService.add('Starting game server...')))
         .subscribe(),
     );
   }
 
   onStop(): void {
     this.subs.push(
-      this.http
-        .get<string>(`${environment.adminService.url}/stop?clusterName=${environment.adminService.clusterName}`)
-        .pipe(
-          tap(() => this.historyService.add('Stopping game server...')),
-          catchError((err, caught) => {
-            console.error(err);
-            this.historyService.add('Request to stop game server failed.');
-            return EMPTY;
-          }),
-        )
+      this.gameService
+        .stop(environment.adminService.clusterName)
+        .pipe(tap(() => this.historyService.add('Stopping game server...')))
         .subscribe(),
     );
   }

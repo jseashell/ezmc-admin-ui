@@ -1,0 +1,45 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { catchError, EMPTY, Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class GameService {
+  constructor(private http: HttpClient) {}
+
+  down(): Observable<string> {
+    return of('');
+  }
+
+  ipAddress(): Observable<string> {
+    return of('');
+  }
+
+  start(clusterName: string): Observable<string> {
+    return this.http.get<string>(`${environment.adminService.url}/start?clusterName=${clusterName}`).pipe(
+      catchError((err, caught) => {
+        console.error(err);
+        return EMPTY;
+      }),
+    );
+  }
+
+  status(): Observable<string> {
+    return of('');
+  }
+
+  stop(clusterName: string): Observable<string> {
+    return this.http.get<string>(`${environment.adminService.url}/stop?clusterName=${clusterName}`).pipe(
+      catchError((err, caught) => {
+        console.error(err);
+        return EMPTY;
+      }),
+    );
+  }
+
+  up(): Observable<string> {
+    return of('');
+  }
+}

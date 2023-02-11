@@ -17,7 +17,7 @@ import { ComponentsModule } from './shared/components/components.module';
     HttpClientModule,
     CoreModule,
     ComponentsModule,
-    ServicesModule,
+    ServicesModule.forRoot(),
   ],
   providers: [
     {
