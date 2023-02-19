@@ -1,3 +1,3 @@
-export * from './game.service';
-export * from './history.service';
+export * from './game/game.service';
+export * from './history/history.service';
 export * from './services.module';
