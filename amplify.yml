@@ -3,10 +3,12 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - nvm install
+        - npm ci --quiet
     build:
       commands:
         - npm run build
+        - npm test
   artifacts:
     baseDirectory: dist/ezmc-management-console
     files:
