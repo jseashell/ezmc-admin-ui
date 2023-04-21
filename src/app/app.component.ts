@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HistoryService } from '@services';
-import { Subscription, switchMap, tap, timer } from 'rxjs';
+import { BehaviorSubject, Subscription, switchMap, tap, timer } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Status } from './shared/enums';
 
@@ -13,13 +13,13 @@ import { Status } from './shared/enums';
 export class AppComponent implements OnInit, OnDestroy {
   private subs: Subscription[] = [];
 
-  private status: Status = Status.UNKNOWN;
-  private runningCount: number = 0;
+  private status = Status.UNKNOWN;
+  private runningCount = 0;
 
-  tabTitle = 'Manage';
-  showCreate = false;
-  showManage = true;
-  showSettings = false;
+  tabTitle$ = new BehaviorSubject('Manage');
+  showCreate$ = new BehaviorSubject(false);
+  showManage$ = new BehaviorSubject(true);
+  showSettings$ = new BehaviorSubject(false);
 
   constructor(private http: HttpClient, private historyService: HistoryService) {}
 
@@ -78,30 +78,33 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  onTabChange(tab: string): void {
-    switch (tab) {
-      case 'create':
-        this.tabTitle = 'Create';
-        this.showCreate = true;
-        this.showManage = false;
-        this.showSettings = false;
+  onTabChange(event: Event): void {
+    event.stopPropagation();
+
+    const tabTitle = (event?.target as HTMLElement)?.innerText;
+    this.tabTitle$.next(tabTitle);
+
+    switch (tabTitle) {
+      case 'Create':
+        this.showCreate$.next(true);
+        this.showManage$.next(false);
+        this.showSettings$.next(false);
         break;
-      case 'manage':
-        this.tabTitle = 'Manage';
-        this.showCreate = false;
-        this.showManage = true;
-        this.showSettings = false;
+      case 'Manage':
+        this.showCreate$.next(false);
+        this.showManage$.next(true);
+        this.showSettings$.next(false);
         break;
-      case 'settings':
-        this.tabTitle = 'Settings';
-        this.showCreate = false;
-        this.showManage = false;
-        this.showSettings = true;
+      case 'Settings':
+        this.showCreate$.next(false);
+        this.showManage$.next(false);
+        this.showSettings$.next(true);
         break;
       default:
-        throw new Error(`Unhandled tab '${tab}'`);
+        throw new Error(`Unhandled tab '${tabTitle}'`);
     }
   }
+
   ngOnDestroy(): void {
     this.subs?.forEach((sub) => sub?.unsubscribe());
   }

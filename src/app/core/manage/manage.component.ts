@@ -13,7 +13,8 @@ export class ManageComponent {
 
   constructor(private gameService: GameService, private historyService: HistoryService) {}
 
-  onStart(): void {
+  onStart(event: Event): void {
+    event.stopPropagation();
     this.subs.push(
       this.gameService
         .start(environment.adminService.clusterName)
@@ -22,7 +23,8 @@ export class ManageComponent {
     );
   }
 
-  onStop(): void {
+  onStop(event: Event): void {
+    event.stopPropagation();
     this.subs.push(
       this.gameService
         .stop(environment.adminService.clusterName)

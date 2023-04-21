@@ -10,7 +10,8 @@ import { HistoryService } from '@services';
 export class CreateComponent {
   constructor(private http: HttpClient, private historyService: HistoryService) {}
 
-  create() {
+  create(event: Event) {
+    event.stopPropagation();
     this.historyService.add('Create pressed');
   }
 }

@@ -10,5 +10,8 @@ import { HistoryService } from '@services';
 export class SettingsComponent {
   constructor(private http: HttpClient, private historyService: HistoryService) {}
 
-  foo(): void {}
+  foo(event: Event): void {
+    event.stopPropagation();
+    this.historyService.add('Foo pressed');
+  }
 }

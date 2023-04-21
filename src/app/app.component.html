@@ -3,16 +3,16 @@
   <h1>Management Console</h1>
   <section class="flex-column margin-top-sm">
     <section class="flex-row">
-      <app-button (click)="onTabChange('create')" [active]="showCreate">Create</app-button>
-      <app-button (click)="onTabChange('manage')" [active]="showManage">Manage</app-button>
-      <app-button (click)="onTabChange('settings')" [active]="showSettings">Settings</app-button>
+      <app-button (click)="onTabChange($event)" [active]="showCreate$ | async">Create</app-button>
+      <app-button (click)="onTabChange($event)" [active]="showManage$ | async">Manage</app-button>
+      <app-button (click)="onTabChange($event)" [active]="showSettings$ | async">Settings</app-button>
     </section>
     <section class="padding-sm">
-      <h2>{{ tabTitle }}</h2>
+      <h2>{{ tabTitle$ | async }}</h2>
       <section class="padding-left-sm">
-        <app-create *ngIf="showCreate"></app-create>
-        <app-manage *ngIf="showManage"></app-manage>
-        <app-settings *ngIf="showSettings"></app-settings>
+        <app-create *ngIf="showCreate$ | async"></app-create>
+        <app-manage *ngIf="showManage$ | async"></app-manage>
+        <app-settings *ngIf="showSettings$ | async"></app-settings>
       </section>
     </section>
   </section>
