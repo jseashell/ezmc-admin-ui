@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class GameService {
+export class AdminService {
   constructor(private http: HttpClient) {}
 
   down(): Observable<string> {

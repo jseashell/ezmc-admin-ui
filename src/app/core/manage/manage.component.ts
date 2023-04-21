@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GameService, HistoryService } from '@services';
+import { AdminService, HistoryService } from '@services';
 import { Subscription, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -11,12 +11,12 @@ import { environment } from 'src/environments/environment';
 export class ManageComponent {
   private subs: Subscription[] = [];
 
-  constructor(private gameService: GameService, private historyService: HistoryService) {}
+  constructor(private adminService: AdminService, private historyService: HistoryService) {}
 
   onStart(event: Event): void {
     event.stopPropagation();
     this.subs.push(
-      this.gameService
+      this.adminService
         .start(environment.adminService.clusterName)
         .pipe(tap(() => this.historyService.add('Starting game server...')))
         .subscribe(),
@@ -26,7 +26,7 @@ export class ManageComponent {
   onStop(event: Event): void {
     event.stopPropagation();
     this.subs.push(
-      this.gameService
+      this.adminService
         .stop(environment.adminService.clusterName)
         .pipe(tap(() => this.historyService.add('Stopping game server...')))
         .subscribe(),
