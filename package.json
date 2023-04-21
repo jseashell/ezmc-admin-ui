@@ -1,6 +1,6 @@
 {
-  "name": "ezmc-management-console",
-  "version": "1.0.0",
+  "name": "ezmc-admin-ui",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

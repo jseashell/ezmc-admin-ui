@@ -1,4 +1,4 @@
-version: 1
+version: 0.1.0
 frontend:
   phases:
     preBuild:
@@ -10,7 +10,7 @@ frontend:
         - npm run build
         - npm test
   artifacts:
-    baseDirectory: dist/ezmc-management-console
+    baseDirectory: dist/ezmc-admin-ui
     files:
       - '**/*'
   cache:
