@@ -1,8 +1,7 @@
 export const environment = {
   production: false,
-  client: 'exampleClient',
   adminService: {
-    url: 'https://76uogf99sl.execute-api.us-east-1.amazonaws.com/main/v1',
-    clusterName: 'ezmc-game-service-main-cluster',
+    url: 'https://nofcwx8pm0.execute-api.us-east-1.amazonaws.com/main/v1',
+    clusterName: 'ezmc-admin-service-main-cluster',
   },
 };
