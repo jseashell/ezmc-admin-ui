@@ -2,11 +2,13 @@ import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CoreModule } from '@core';
-import { ServicesModule } from '@services';
+import { CoreModule } from 'src/app/@core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ComponentsModule } from './shared/components/components.module';
+import { CreateModule } from './create/create.module';
+import { HistoryModule } from './history/history.module';
+import { ManageModule } from './manage/manage.module';
+import { SettingsModule } from './settings/settings.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,8 +18,10 @@ import { ComponentsModule } from './shared/components/components.module';
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
-    ComponentsModule,
-    ServicesModule.forRoot(),
+    CreateModule,
+    HistoryModule,
+    SettingsModule,
+    ManageModule,
   ],
   providers: [
     {

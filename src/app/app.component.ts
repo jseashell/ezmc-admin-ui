@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Status } from '@enums';
 import { HistoryService } from '@services';
 import { BehaviorSubject, Subscription, switchMap, tap, timer } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Status } from './shared/enums';
 
 @Component({
   selector: 'app-root',

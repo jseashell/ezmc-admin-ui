@@ -2,8 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@core": ["src/app/core"],
-      "@services": ["src/app/shared/services"]
+      "@components": ["src/app/@core/components"],
+      "@enums": ["src/app/@core/enums"],
+      "@services": ["src/app/@core/services"]
     }
   }
 }

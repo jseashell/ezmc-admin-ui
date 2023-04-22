@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ComponentsModule } from 'src/app/shared/components/components.module';
+import { ComponentsModule } from 'src/app/@core/components/components.module';
 import { SettingsComponent } from './settings.component';
 
 @NgModule({
