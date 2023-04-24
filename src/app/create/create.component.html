@@ -1,8 +1,10 @@
-<ul>
+<ul *ngIf="!showForm">
   <li>
     <h3>New Server</h3>
   </li>
   <li class="buttons">
-    <app-button (click)="create($event)">Create</app-button>
+    <app-button (click)="showForm = !showForm">Create</app-button>
   </li>
 </ul>
+
+<app-create-form *ngIf="showForm"></app-create-form>

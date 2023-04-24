@@ -8,10 +8,6 @@ import { HistoryService } from '@services';
   styleUrls: ['./create.component.css'],
 })
 export class CreateComponent {
+  showForm = false;
   constructor(private http: HttpClient, private historyService: HistoryService) {}
-
-  create(event: Event) {
-    event.stopPropagation();
-    this.historyService.add('Create pressed');
-  }
 }
