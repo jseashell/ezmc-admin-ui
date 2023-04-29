@@ -1,22 +1,22 @@
 <div class="main">
   <img src="/assets/Minecraft-Logo.png" />
-  <h1>Management Console</h1>
-  <section class="flex flex-col mt-4">
-    <form>
-      <label>
+  <h1 class="mb-4">Management Console</h1>
+  <section class="flex flex-col">
+    <form class="p-2">
+      <label class="p-2 border-2 border-white rounded-t-lg">
         <input type="radio" value="Create" (click)="onTabChange($event)" />
-        <span>Create</span>
+        <span class="ml-1">Create</span>
       </label>
-      <label>
+      <label class="p-2 border-2 border-white rounded-t-lg">
         <input type="radio" value="Manage" (click)="onTabChange($event)" />
-        <span>Manage</span>
+        <span class="ml-1">Manage</span>
       </label>
-      <label>
+      <label class="p-2 border-2 border-white rounded-t-lg">
         <input type="radio" value="Settings" (click)="onTabChange($event)" />
-        <span>Settings</span>
+        <span class="ml-1">Settings</span>
       </label>
     </form>
-    <section class="p-4">
+    <section class="p-4 border-2 border-white">
       <h2>{{ tabTitle$ | async }}</h2>
       <section class="pl-4">
         <app-create *ngIf="showCreate$ | async"></app-create>
