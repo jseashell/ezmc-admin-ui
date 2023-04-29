@@ -15,7 +15,6 @@ ol {
 
 @media only screen and (max-width: 490px) {
   ol {
-    padding: 0.5rem 1rem;
     font-size: 14px;
   }
 }

@@ -16,9 +16,9 @@
         <span>Settings</span>
       </label>
     </form>
-    <section class="padding-sm">
+    <section class="p-4">
       <h2>{{ tabTitle$ | async }}</h2>
-      <section class="padding-left-sm">
+      <section class="pl-4">
         <app-create *ngIf="showCreate$ | async"></app-create>
         <app-manage *ngIf="showManage$ | async"></app-manage>
         <app-settings *ngIf="showSettings$ | async"></app-settings>
@@ -26,7 +26,7 @@
     </section>
   </section>
   <section>
-    <h2 class="padding-left-sm margin-top-sm margin-bottom-sm">History</h2>
+    <h2 class="pl-4 margin-top-sm margin-bottom-sm">History</h2>
     <app-history></app-history>
   </section>
 </div>

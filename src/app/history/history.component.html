@@ -1,4 +1,4 @@
-<ol reversed *ngIf="history$ | async as history" class="padding-sm">
+<ol reversed *ngIf="history$ | async as history" class="px-4 py-2">
   <li *ngFor="let action of history">
     <p>
       {{ action.timestamp | date : 'mediumTime' }} ~
