@@ -2,11 +2,20 @@
   <img src="/assets/Minecraft-Logo.png" />
   <h1>Management Console</h1>
   <section class="flex-column margin-top-sm">
-    <section class="flex-row">
-      <app-button (click)="onTabChange($event)" [active]="showCreate$ | async">Create</app-button>
-      <app-button (click)="onTabChange($event)" [active]="showManage$ | async">Manage</app-button>
-      <app-button (click)="onTabChange($event)" [active]="showSettings$ | async">Settings</app-button>
-    </section>
+    <form>
+      <label>
+        <input type="radio" value="Create" (click)="onTabChange($event)" />
+        <span>Create</span>
+      </label>
+      <label>
+        <input type="radio" value="Manage" (click)="onTabChange($event)" />
+        <span>Manage</span>
+      </label>
+      <label>
+        <input type="radio" value="Settings" (click)="onTabChange($event)" />
+        <span>Settings</span>
+      </label>
+    </form>
     <section class="padding-sm">
       <h2>{{ tabTitle$ | async }}</h2>
       <section class="padding-left-sm">

@@ -2,9 +2,9 @@
   <li *ngFor="let server of servers">
     <h3>{{ server.name }}</h3>
     <div class="buttons">
-      <app-button (click)="onStart($event)" class="margin-right-xs">Start</app-button>
-      <app-button (click)="onStop($event)" class="margin-right-xs">Stop</app-button>
-      <app-button (click)="onDelete($event)">Delete</app-button>
+      <button (click)="onStart($event)" class="margin-right-xs">Start</button>
+      <button (click)="onStop($event)" class="margin-right-xs">Stop</button>
+      <button (click)="onDelete($event)">Delete</button>
     </div>
   </li>
 </ul>

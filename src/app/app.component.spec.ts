@@ -1,7 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ComponentsModule } from '@components';
 import { ServicesModule } from './@core/services/services.module';
 import { AppComponent } from './app.component';
 import { CreateModule } from './create/create.module';
@@ -14,7 +13,6 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
       imports: [
-        ComponentsModule,
         CreateModule,
         HistoryModule,
         HttpClientTestingModule,

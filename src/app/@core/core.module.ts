@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { ComponentsModule } from './components/components.module';
 import { ServicesModule } from './services';
 
-const modules = [ComponentsModule, ServicesModule];
+const modules = [ServicesModule];
 @NgModule({
   imports: [...modules],
   exports: [...modules],

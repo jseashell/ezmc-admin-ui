@@ -81,7 +81,7 @@ export class AppComponent implements OnInit, OnDestroy {
   onTabChange(event: Event): void {
     event.stopPropagation();
 
-    const tabTitle = (event?.target as HTMLElement)?.innerText;
+    const tabTitle = (event.target as HTMLInputElement).value;
     this.tabTitle$.next(tabTitle);
 
     switch (tabTitle) {
