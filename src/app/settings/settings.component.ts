@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { HistoryService } from '@services';
 
@@ -8,7 +7,7 @@ import { HistoryService } from '@services';
   styleUrls: ['./settings.component.css'],
 })
 export class SettingsComponent {
-  constructor(private http: HttpClient, private historyService: HistoryService) {}
+  constructor(private historyService: HistoryService) {}
 
   foo(event: Event): void {
     event.stopPropagation();

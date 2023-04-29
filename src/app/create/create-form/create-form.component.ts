@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-form',
@@ -9,9 +9,13 @@ import { FormGroup } from '@angular/forms';
 export class CreateFormComponent implements OnInit {
   createForm: FormGroup;
 
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.createForm = this.fb.group({
+      name: [''],
+    });
+  }
 
   submit(event: Event): void {
     event.stopPropagation();

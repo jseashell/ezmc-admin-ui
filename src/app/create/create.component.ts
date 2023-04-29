@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { HistoryService } from '@services';
 
 @Component({
   selector: 'app-create',
@@ -9,5 +7,4 @@ import { HistoryService } from '@services';
 })
 export class CreateComponent {
   showForm = false;
-  constructor(private http: HttpClient, private historyService: HistoryService) {}
 }
