@@ -12,7 +12,6 @@ ul li {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 1rem 0;
 }
 
 @media only screen and (max-width: 490px) {
