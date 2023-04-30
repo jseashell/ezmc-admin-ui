@@ -110,9 +110,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   toggleHistory(event: Event): void {
     event.stopPropagation();
-    const next = !this.showHistory$.value;
-    this.showHistory$.next(next);
-    this.historyCta$.next(next ? 'Hide Console' : 'Show Console');
+    this.showHistory$.next(!this.showHistory$.value);
   }
 
   ngOnDestroy(): void {
