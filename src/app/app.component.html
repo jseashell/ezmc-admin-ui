@@ -1,32 +1,39 @@
-<div class="main">
-  <img src="/assets/Minecraft-Logo.png" />
-  <h1 class="mb-4">Management Console</h1>
+<main class="h-screen flex flex-col justify-between">
   <section class="flex flex-col">
-    <form class="p-2">
-      <label class="p-2 border-2 border-white rounded-t-lg">
-        <input type="radio" value="Create" (click)="onTabChange($event)" />
-        <span class="ml-1">Create</span>
+    <img src="/assets/Minecraft-Logo.png" />
+    <h1 class="text-2xl text-center mb-4">EZMC Admin</h1>
+    <nav class="w-full flex justify-center">
+      <label
+        for="create"
+        class="px-4 py-2 border-2 border-white rounded-lg hover:cursor-pointer hover:text-blue-500 hover:border-blue-500">
+        <input id="create" type="radio" value="Create" class="hidden" (click)="onTabChange($event)" />
+        <span>Create</span>
       </label>
-      <label class="p-2 border-2 border-white rounded-t-lg">
-        <input type="radio" value="Manage" (click)="onTabChange($event)" />
-        <span class="ml-1">Manage</span>
+      <label
+        for="manage"
+        class="px-4 py-2 border-2 border-white rounded-lg hover:cursor-pointer hover:text-blue-500 hover:border-blue-500">
+        <input id="manage" type="radio" value="Manage" class="hidden" (click)="onTabChange($event)" ngModel />
+        <span>Manage</span>
       </label>
-      <label class="p-2 border-2 border-white rounded-t-lg">
-        <input type="radio" value="Settings" (click)="onTabChange($event)" />
-        <span class="ml-1">Settings</span>
+      <label
+        for="settings"
+        class="px-4 py-2 border-2 border-white rounded-lg hover:cursor-pointer hover:text-blue-500 hover:border-blue-500">
+        <input id="settings" type="radio" value="Settings" class="hidden" (click)="onTabChange($event)" ngModel />
+        <span>Settings</span>
       </label>
-    </form>
-    <section class="p-4 border-2 border-white">
-      <h2>{{ tabTitle$ | async }}</h2>
-      <section class="pl-4">
-        <app-create *ngIf="showCreate$ | async"></app-create>
-        <app-manage *ngIf="showManage$ | async"></app-manage>
-        <app-settings *ngIf="showSettings$ | async"></app-settings>
-      </section>
+    </nav>
+    <section>
+      <app-create *ngIf="showCreate$ | async"></app-create>
+      <app-manage *ngIf="showManage$ | async"></app-manage>
+      <app-settings *ngIf="showSettings$ | async"></app-settings>
     </section>
   </section>
-  <section>
-    <h2 class="pl-4 my-4">History</h2>
-    <app-history></app-history>
+  <section class="flex flex-col align-center justify-center">
+    <button
+      (click)="toggleHistory($event)"
+      class="px-4 py-2 border-2 border-white rounded-t-lg hover:cursor-pointer hover:text-blue-500 hover:border-blue-500">
+      {{ historyCta$ | async }}
+    </button>
+    <app-history *ngIf="showHistory$ | async"></app-history>
   </section>
-</div>
+</main>

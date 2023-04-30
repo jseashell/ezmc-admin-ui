@@ -21,6 +21,9 @@ export class AppComponent implements OnInit, OnDestroy {
   showManage$ = new BehaviorSubject(true);
   showSettings$ = new BehaviorSubject(false);
 
+  showHistory$ = new BehaviorSubject(false);
+  historyCta$ = new BehaviorSubject('Show Console');
+
   constructor(private http: HttpClient, private historyService: HistoryService) {}
 
   ngOnInit(): void {
@@ -103,6 +106,13 @@ export class AppComponent implements OnInit, OnDestroy {
       default:
         throw new Error(`Unhandled tab '${tabTitle}'`);
     }
+  }
+
+  toggleHistory(event: Event): void {
+    event.stopPropagation();
+    const next = !this.showHistory$.value;
+    this.showHistory$.next(next);
+    this.historyCta$.next(next ? 'Hide Console' : 'Show Console');
   }
 
   ngOnDestroy(): void {
