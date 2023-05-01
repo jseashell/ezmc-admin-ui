@@ -1,3 +1,5 @@
 <form [formGroup]="createForm" (ngSubmit)="submit($event)">
   <input formControlName="name" type="text" placeholder="Name" />
+  <button (click)="onCancel($event)">Cancel</button>
+  <button (click)="submit($event)">Submit</button>
 </form>

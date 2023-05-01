@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { HistoryService } from '@services';
 
 @Component({
   selector: 'app-create-form',
@@ -8,8 +9,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CreateFormComponent implements OnInit {
   createForm: FormGroup;
-
-  constructor(private fb: FormBuilder) {}
+  @Output() cancel = new EventEmitter();
+  constructor(private fb: FormBuilder, private historyService: HistoryService) {}
 
   ngOnInit(): void {
     this.createForm = this.fb.group({
@@ -19,5 +20,11 @@ export class CreateFormComponent implements OnInit {
 
   submit(event: Event): void {
     event.stopPropagation();
+    this.historyService.add(`Creating ${this.createForm.controls.name.value}`);
+  }
+
+  onCancel(event: Event): void {
+    event.stopPropagation();
+    this.cancel.emit();
   }
 }
