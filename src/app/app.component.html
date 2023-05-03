@@ -22,7 +22,7 @@
         <span>Settings</span>
       </label>
     </nav>
-    <section>
+    <section class="my-4">
       <app-create *ngIf="showCreate$ | async"></app-create>
       <app-manage *ngIf="showManage$ | async"></app-manage>
       <app-settings *ngIf="showSettings$ | async"></app-settings>

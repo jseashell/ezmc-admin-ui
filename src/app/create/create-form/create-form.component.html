@@ -1,5 +1,31 @@
-<form [formGroup]="createForm" (ngSubmit)="submit($event)">
-  <input formControlName="name" type="text" placeholder="Name" />
-  <button (click)="onCancel($event)">Cancel</button>
-  <button (click)="submit($event)">Submit</button>
+<form [formGroup]="createForm" (ngSubmit)="submit($event)" class="flex justify-between">
+  <input formControlName="name" type="text" placeholder="Name" class="flex-grow mr-4" />
+  <div class="flex items-center">
+    <label
+      for="cancel-button"
+      class="flex items-center py-2 px-4 border-2 border-white rounded-lg hover:cursor-pointer hover:border-blue-500 hover:text-blue-500">
+      <input
+        id="cancel-button"
+        type="image"
+        src="assets/noun-wrong-4110300.svg"
+        (click)="onCancel($event)"
+        alt="Cancel"
+        width="32px"
+        height="32px" />
+      <span>Cancel</span>
+    </label>
+    <label
+      for="submit-button"
+      class="flex items-center py-2 px-4 border-2 border-white rounded-lg hover:cursor-pointer hover:border-blue-500 hover:text-blue-500">
+      <input
+        id="submit-button"
+        type="image"
+        src="assets/noun-play-button-4110295.svg"
+        (click)="submit($event)"
+        alt="Submit"
+        width="32px"
+        height="32px" />
+      <span>Submit</span>
+    </label>
+  </div>
 </form>
